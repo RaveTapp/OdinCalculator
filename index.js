@@ -21,13 +21,13 @@ function divide(num1, num2){
 
 function operate(a, op, b){
     switch(op){
-        case "add":
+        case "+":
             return add(a, b);
-        case "subtract":
+        case "-":
             return subtract(a, b);
-        case "multiply":
+        case "*":
             return multiply(a, b);
-        case "divide":
+        case "/":
             return divide(a, b);
         default:
             console.log("Unknown operator");
@@ -40,6 +40,23 @@ let display = document.querySelector("#display");
 function addToDisplay(num){
     displayValue += num.toString();
     display.textContent = displayValue;
+}
+
+function addOperator(op){
+    if(num1st == null){
+        num1st = displayValue.trim();
+        operator = op;
+        addToDisplay(" " + op + " ");
+        console.log(num1st);
+    } else {//if (num2nd == null)
+        num2nd = displayValue.split(" ")[2];
+        num1st = operate(+num1st, operator, +num2nd);
+        console.log("1st " + num1st);
+        console.log(num2nd);
+        displayValue = num1st.toString();
+        operator = op;
+        addToDisplay(" " + op + " ");
+    }
 }
 
 function clearDisplay(){
