@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#display {
+    border : 2px black solid;
+    display: inline;
+    padding: 4px;
+    flex: auto;
+    margin: 0 30%;;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+}
+
+button {
+    padding: 8px;
+    margin-top: 2px;
+}
+
+.num {
+    background-color: rgb(128, 178, 209);
+}
+
+.operator, .clear, .equals {
+    background-color: rgb(236, 163, 25);
+}
+
+.empty {
+    color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+    padding: 10px;
+}
