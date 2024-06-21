@@ -1,6 +1,7 @@
 var num1st;
 var num2nd;
 var operator;
+var displayValue = "";
 
 function add(num1, num2){
     return num1 + num2;
@@ -32,4 +33,20 @@ function operate(a, op, b){
             console.log("Unknown operator");
             break;
     }
+}
+
+let display = document.querySelector("#display");
+
+function addToDisplay(num){
+    displayValue += num.toString();
+    display.textContent = displayValue;
+}
+
+function clearDisplay(){
+    displayValue = "";
+    num1st = null;
+    num2nd = null;
+    operator = null;
+    display.textContent = displayValue;
+    console.log(displayValue);
 }
