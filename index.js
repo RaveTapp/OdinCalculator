@@ -3,6 +3,14 @@ var num2nd;
 var operator;
 var displayValue = "";
 
+function clearDisplay(){
+    displayValue = "";
+    num1st = null;
+    num2nd = null;
+    operator = null;
+    display.textContent = displayValue;
+}
+
 function add(num1, num2){
     return num1 + num2;
 }
@@ -16,6 +24,10 @@ function multiply(num1, num2){
 }
 
 function divide(num1, num2){
+    if(num2 == 0){
+        alert("Dividing by 0!!");
+        return NaN;
+    }
     return num1 / num2;
 }
 
@@ -54,9 +66,15 @@ function addOperator(op){
         if(num2nd){
             num1st = Math.round(operate(+num1st, operator, +num2nd) * 1000) / 1000;
         }
-        displayValue = num1st.toString();
-        operator = op;
-        addToDisplay(" " + op + " ");
+
+        if(isNaN(num1st)){
+            clearDisplay();
+        } else {
+            displayValue = num1st.toString();
+            operator = op;
+            addToDisplay(" " + op + " ");
+        }
+        
     }
 }
 
@@ -68,17 +86,13 @@ function calcEquals(){
     num2nd = split[2];
     if(num2nd && operator){
         num1st = Math.round(operate(+num1st, operator, +num2nd) * 1000) / 1000;
-        displayValue = num1st.toString();
-        display.textContent = displayValue;
-        operator = null;
+        if(isNaN(num1st)){
+            clearDisplay();
+        } else {
+            displayValue = num1st.toString();
+            display.textContent = displayValue;
+            operator = null;
+        }
+        
     }
-}
-
-function clearDisplay(){
-    displayValue = "";
-    num1st = null;
-    num2nd = null;
-    operator = null;
-    display.textContent = displayValue;
-    console.log(displayValue);
 }
