@@ -43,23 +43,34 @@ function addToDisplay(num){
 }
 
 function addOperator(op){
-    if(num1st == null || num1st == ""){
+    if(!num1st || num1st == "" || !operator){
         num1st = displayValue.trim();
         if(num1st){
             operator = op;
             addToDisplay(" " + op + " ");
         }
-        console.log(num1st);
-    } else {//if (num2nd == null)
+    } else {
         num2nd = displayValue.split(" ")[2];
         if(num2nd){
             num1st = Math.round(operate(+num1st, operator, +num2nd) * 1000) / 1000;
         }
-        console.log("1st " + num1st);
-        console.log(num2nd);
         displayValue = num1st.toString();
         operator = op;
         addToDisplay(" " + op + " ");
+    }
+}
+
+function calcEquals(){
+    let split = displayValue.split(" ")
+    if(!operator){
+        operator = split[1];
+    }
+    num2nd = split[2];
+    if(num2nd && operator){
+        num1st = Math.round(operate(+num1st, operator, +num2nd) * 1000) / 1000;
+        displayValue = num1st.toString();
+        display.textContent = displayValue;
+        operator = null;
     }
 }
 
